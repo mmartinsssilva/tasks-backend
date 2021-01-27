@@ -36,8 +36,10 @@ pipeline {
         }  
         stage ('API TEST') {  
             steps {
+                dir('api-test') {
                 git credentialsId: 'github_login1', url: 'https://github.com/mmartinsssilva/tasks-api-test'
                 sh 'mvn test'
+                }
             }
         }                
     }
