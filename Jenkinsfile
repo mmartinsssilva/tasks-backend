@@ -32,15 +32,25 @@ pipeline {
         stage ('Deploy Backend') {  
             steps {
                 sleep(5)
+                //linha deploy
             }
         }  
         stage ('API TEST') {  
             steps {
                 dir('api-test') {
                 git credentialsId: 'github_login1', url: 'https://github.com/mmartinsssilva/tasks-api-test'
-                sh 'mvn test'
+                //sh 'mvn test'
                 }
             }
-        }                
+        } 
+        stage ('Deploy Frontend') {  
+            steps {
+                dir('frontend') {
+                git credentialsId: 'github_login1', url: 'https://github.com/mmartinsssilva/tasks-frontend'
+                sh 'mvn clean package '
+                //linha do deploy
+                }
+            }
+        }                 
     }
 }
