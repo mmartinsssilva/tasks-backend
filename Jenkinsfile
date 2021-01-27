@@ -6,10 +6,11 @@ pipeline {
                 sh 'mvn clean package -DskipTest=true'
             }    
         }
-        stage ('meio') {
+        stage ('unit test') {
             steps {
-                sh 'echo meio'
+                sh 'mvn test'
             }    
+        }   
         }
         stage ('fim') {
             steps {
