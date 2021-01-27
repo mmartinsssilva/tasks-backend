@@ -28,6 +28,17 @@ pipeline {
                     waitForQualityGate abortPipeline: true 
                 }
             }
-        }          
+        } 
+        stage ('Deploy Backend') {  
+            steps {
+                sleep(5)
+            }
+        }  
+        stage ('API TEST') {  
+            steps {
+                git credentialsId: 'github_login1', url: 'https://github.com/mmartinsssilva/tasks-api-test'
+                sh 'mvn test'
+            }
+        }                
     }
 }
