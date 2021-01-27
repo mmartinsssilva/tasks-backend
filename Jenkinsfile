@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('teste unitario') {
             steps {
-                sh 'echo teste'
+                sh 'mvn test'
             }    
         }
         stage ('fim') {
