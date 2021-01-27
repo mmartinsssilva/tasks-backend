@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('Unit test') {
             steps {
-                sh 'echo test'
+                sh 'echo teste'
             }    
         }   
         }
