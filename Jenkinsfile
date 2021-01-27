@@ -8,12 +8,17 @@ pipeline {
         }
         stage ('teste unitario') {
             steps {
-                sh 'mvn test'
+                sh 'echo teste'
             }    
         }
-        stage ('fim') {
+        stage ('Sonar Analysis') {
+            environment {
+                scannerHome = tool 'SONAR_SCANNER'
+            }    
             steps {
-                sh 'echo fim'
+                withSonarQubeEnv('SONAR_LOCAL') {
+                sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://192.168.15.44:9000 -Dsonar.login=40127015afe3cb7da136aa3333dbdcbf94f86fe4 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**aplication.java"
+                }
             }
         }         
     }
