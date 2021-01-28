@@ -46,11 +46,20 @@ pipeline {
         stage ('Deploy Frontend') {  
             steps {
                 dir('frontend') {
-                git credentialsId: 'github_login1', url: 'https://github.com/mmartinsssilva/tasks-frontend'
+                git credentialsId: 'github_login1', url: 'https://github.com/wcaquinocursos/tasks-frontend'
                 sh 'mvn clean package '
                 //linha do deploy
                 }
             }
-        }                 
+        }
+        stage ('Funtional  TEST') {  
+            steps {
+                dir('funtional-test') {
+                git credentialsId: 'github_login1', url: 'https://github.com/mmartinsssilva/tasks-api-test'
+                //sh 'mvn test'
+                }
+            }
+        }                  
     }
 }
+
